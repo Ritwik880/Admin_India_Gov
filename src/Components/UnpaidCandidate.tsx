@@ -55,7 +55,7 @@ const UnPaidCandidate = () => {
                         ) : (
                             <div className="usersList">
                                 <h1>Users List who have not done the payment yet!</h1>
-                                <ul>
+                                <ul className='unPaid'>
                                     {
                                         users.length > 0 ? (
                                             <div>
@@ -63,7 +63,7 @@ const UnPaidCandidate = () => {
                                                     users.map((item, id) => {
                                                         return (
                                                             <>
-                                                                <li key={id}>
+                                                                <li key={id} className='unPaidList'>
                                                                     {item.applicantName}
                                                                 </li>
                                                             </>

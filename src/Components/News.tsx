@@ -12,8 +12,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import "react-toastify/dist/ReactToastify.css";
 import Cta from './Cta';
-import
-// import { LoadingButton } from "@mui/lab";
 import NewsTable from './NewsTable';
 
 type ProfileValuesProps = {

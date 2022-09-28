@@ -56,12 +56,11 @@
 
 .contact-form .form-control {
     border: none;
-    /* border-bottom: 1px solid #20247b;
-  background: transparent; */
     border-radius: 0;
     padding-left: 0;
     box-shadow: none !important;
     padding: 10px;
+    margin-bottom: 2rem;
 }
 
 .contact-form .form-control:focus {

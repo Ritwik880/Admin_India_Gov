@@ -72,7 +72,7 @@ const PaidCandidate = () => {
                                                 }
                                             </div>
                                         ) : (
-                                            <Typography variant='h6' textAlign='center'>No Users Found!</Typography>
+                                            <Typography variant='h6' pt={3}>No Users Found!</Typography>
 
                                         )
                                     }
