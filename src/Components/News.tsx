@@ -12,7 +12,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import "react-toastify/dist/ReactToastify.css";
 import Cta from './Cta';
+import
 // import { LoadingButton } from "@mui/lab";
+import NewsTable from './NewsTable';
 
 type ProfileValuesProps = {
     id: number,
@@ -23,7 +25,7 @@ type ProfileValuesProps = {
 const News = () => {
 
     const ProfileSchema = Yup.object().shape({
-        news: Yup.string().required('News is required'),
+        news: Yup.string().required('News name is required'),
     });
 
     const defaultValues = {
@@ -38,7 +40,7 @@ const News = () => {
     });
 
     const {
-        handleSubmit,
+        handleSubmit, reset,
         formState: { isSubmitting },
     } = methods;
 
@@ -50,6 +52,7 @@ const News = () => {
             });
             const { message } = response.data;
             toast.success("News generated successfully!");
+            reset();
         } catch (error: any) {
             console.log(error);
 
@@ -75,12 +78,10 @@ const News = () => {
                                     <RHFTextField name="news" label="" placeholder='Enter news*' />
                                 </Form.Group>
                             </Row>
-                            <Button type="submit" className="contactPageBtn">  Generate News</Button>
+                            <Button type="submit" className="contactPageBtn">Generate News</Button>
                         </FormProvider>
                     </div>
-
-
-
+                    <NewsTable />
                 </div>
             </section>
             <Cta />

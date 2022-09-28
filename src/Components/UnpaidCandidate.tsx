@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress, Typography } from '@mui/material';
 import Cta from './Cta'
 import axios from 'axios';
 type UsersList = {
@@ -13,7 +13,7 @@ const UnPaidCandidate = () => {
         const getUser = async () => {
             setLoading(true);
             try {
-                await axios.post(`/api/application/pending-payment-applicant`).then((response) => {
+                await axios.get(`http://localhost:9090/api/application/pending-payment-applicant`).then((response) => {
                     if (!isMounted.current) {
                         const { body } = response.data;
                         setUsers(body);
@@ -57,15 +57,23 @@ const UnPaidCandidate = () => {
                                 <h1>Users List who have not done the payment yet!</h1>
                                 <ul>
                                     {
-                                        users.map((item, id) => {
-                                            return (
-                                                <>
-                                                    <li key={id}>
-                                                        {item.applicantName}
-                                                    </li>
-                                                </>
-                                            )
-                                        })
+                                        users.length > 0 ? (
+                                            <div>
+                                                {
+                                                    users.map((item, id) => {
+                                                        return (
+                                                            <>
+                                                                <li key={id}>
+                                                                    {item.applicantName}
+                                                                </li>
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        ) : (
+                                            <Typography variant='h6' textAlign='center'>No Users Found!</Typography>
+                                        )
                                     }
                                 </ul>
                             </div>
