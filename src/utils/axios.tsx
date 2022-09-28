@@ -1,5 +1,4 @@
-import axios from "axios";
-// config
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 
 // ----------------------------------------------------------------------

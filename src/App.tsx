@@ -5,20 +5,16 @@ import {
 } from "@mui/material";
 import './App.css'
 import Header from './Components/Header'
-import Home from './Components/Home';
 import Footer from './Components/Footer';
-import About from './Components/About';
-import Career from './Components/Career';
-import Contact from './Components/Contact';
-import Gallery from './Components/Gallery';
-import Login from './Components/Login';
-import ApplyNow from './Components/ApplyNow';
-import Refund from './Components/Refund';
-import Policies from './Components/Policies';
+import ScrollToTop from './Components/ScrollToTop';
+import PaidCandidate from './Components/PaidCandidate';
+import UnpaidCandidate from './Components/UnpaidCandidate';
+import News from './Components/News';
+import Disclaimer from './Components/Disclaimer';
 import Copyright from './Components/Copyright';
 import Privacy from './Components/Privacy';
+import Refund from './Components/Refund';
 import Terms from './Components/Terms';
-import ScrollToTop from './Components/ScrollToTop';
 const App = () => {
   const [loading, setLoading] = useState(false);
 
@@ -48,18 +44,15 @@ const App = () => {
             <Header />
             <ScrollToTop />
             <Routes>
-              <Route path='/' element={<Home />}></Route>
-              <Route path='/about' element={<About />}></Route>
-              <Route path='/career' element={<Career />}></Route>
-              <Route path='/contact' element={<Contact />}></Route>
-              <Route path='/gallery' element={<Gallery />}></Route>
-              <Route path='/login' element={<Login />}></Route>
-              <Route path='/apply-now' element={<ApplyNow />}></Route>
-              <Route path='/refund-policy' element={<Refund />}></Route>
-              <Route path='/web-policy' element={<Policies />}></Route>
+              <Route path='/' element={<News />}></Route>
+              <Route path='/paid-candidate' element={<PaidCandidate />}></Route>
+              <Route path='/unpaid-candidate' element={<UnpaidCandidate />}></Route>
+              <Route path='/disclaimer' element={<Disclaimer />}></Route>
               <Route path='/copyright' element={<Copyright />}></Route>
               <Route path='/privacy-policy' element={<Privacy />}></Route>
+              <Route path='/refund-policy' element={<Refund />}></Route>
               <Route path='/terms-condition' element={<Terms />}></Route>
+
             </Routes>
             <Footer />
           </div>

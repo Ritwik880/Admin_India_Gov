@@ -1,35 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+
+
 const Footer = () => {
-
-
-
-
     return (
+
         <>
             <footer className='footer'>
-                <div className="row container">
+                <div className='row container'>
                     <div className='footerItems'>
-
-                        <Link to='/web-policy' className='linkFooterItem'>
-                            Web Policies
+                        <Link to='/disclaimer' className='linkFooterItem'>
+                            Disclaimer
                         </Link>
-
-                        <a className='footerLinkTag' href="#">visitior analytics</a>
-
-                        <Link to='/contact' className='linkFooterItem'>
-                            Contact Us
-                        </Link>
-
-                        <a className='footerLinkTag' href="#">Follow Us</a>
 
                         <Link to='/copyright' className='linkFooterItem'>
-                            Copyright
+                            Copyright Policy
                         </Link>
 
 
                         <Link to='/privacy-policy' className='linkFooterItem'>
-                            Privacy
+                            Privacy Policy
                         </Link>
 
 
@@ -39,14 +29,15 @@ const Footer = () => {
 
 
                         <Link to='/refund-policy' className='linkFooterItem'>
-                            Refund
+                            Refund Policy
                         </Link>
-
                     </div>
+
 
                 </div>
             </footer>
         </>
+
     )
 }
 
