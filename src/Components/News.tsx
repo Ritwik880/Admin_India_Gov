@@ -50,6 +50,7 @@ const News = () => {
             const { message } = response.data;
             toast.success("News generated successfully!");
             reset();
+            window.location.reload();
         } catch (error: any) {
             console.log(error);
 

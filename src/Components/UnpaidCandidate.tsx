@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Box, CircularProgress, styled } from '@mui/material';
 import Cta from './Cta'
-import axios from '../utils/axios'
+import axios from '../utils/axios';
+import { useDownloadExcel } from 'react-export-table-to-excel';
+
 type UsersList = {
     applicantName: string;
     emailId: string;
@@ -36,6 +38,14 @@ const UnPaidCandidate = () => {
         };
         getUser();
     }, []);
+
+    const tableRef = useRef(null);
+
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Users table',
+        sheet: 'Users'
+    })
     return (
         <>
             <div className="pb-6 d-flex align-items-center about-page">
@@ -61,15 +71,18 @@ const UnPaidCandidate = () => {
 
                         ) : (
                             <TableWrapper>
-                                <h1>Users List who have not done the payment yet!</h1>
-                                <table>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <h1>Users List who have not done the payment yet!</h1>
+                                    <button className='applyNow' onClick={onDownload}>Download</button>
+                                </div>
+                                <table ref={tableRef}>
                                     <tr>
-                                        
+
                                         <th>Application Id</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone Number</th>
-                                       
+
                                     </tr>
                                     {
                                         users.map((item, id) => {
@@ -79,7 +92,7 @@ const UnPaidCandidate = () => {
                                                     <td>{item.applicantName}</td>
                                                     <td>{item.emailId}</td>
                                                     <td>{item.mobileNumber}</td>
-                                                 
+
 
                                                 </tr>
                                             )

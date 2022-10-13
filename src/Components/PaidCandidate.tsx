@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Box, CircularProgress, Typography, styled } from '@mui/material';
 import Cta from './Cta'
 import axios from '../utils/axios';
+import { useDownloadExcel } from 'react-export-table-to-excel';
 
 type UsersList = {
     applicantName: string;
@@ -37,6 +38,14 @@ const PaidCandidate = () => {
         };
         getUser();
     }, []);
+
+    const tableRef = useRef(null);
+
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Users table',
+        sheet: 'Users'
+    })
     return (
         <>
             <div className="pb-6 d-flex align-items-center about-page">
@@ -63,8 +72,12 @@ const PaidCandidate = () => {
                         ) : (
                            
                             <TableWrapper>
+                      
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <h1>Users List who have done the payment</h1>
-                            <table>
+                                    <button className='applyNow' onClick={onDownload}>Download</button>
+                                </div>
+                            <table ref={tableRef}>
                                 <tr>
                                     
                                     <th>Application Id</th>

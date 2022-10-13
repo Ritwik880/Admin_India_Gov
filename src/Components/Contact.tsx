@@ -84,7 +84,7 @@ const Contact = () => {
 
                         ) : (
                             <TableWrapper>
-                                <h1>All Users</h1>
+                                <h1>All Contact Details</h1>
                                 <table>
                                     <tr>
                                         <th>S.No.</th>

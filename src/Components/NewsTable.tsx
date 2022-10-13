@@ -85,12 +85,12 @@ export default function NewsTable(): React.ReactElement {
             <h1>All News</h1>
             <table>
                 <tr>
-                    <th>News</th>
+                    <th style={{minWidth: '1200px'}}>News</th>
                     <th>Action</th>
 
                 </tr>
                 {
-                    news.map((item, id) => {
+                    news && news.map((item, id) => {
                         return (
                             <tr key={id}>
                                 <td>{item.news}</td>
