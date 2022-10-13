@@ -1,10 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress, Typography, styled } from '@mui/material';
 import Cta from './Cta'
-import axios from 'axios';
+import axios from '../utils/axios';
+
 type UsersList = {
-    applicantName: string
+    applicantName: string;
+    emailId: string;
+    mobileNumber: string;
+    applicationId: string;
 }
+const TableWrapper = styled(Box)(({ theme }) => ({
+    height: "600px",
+    marginTop: '1rem'
+}));
 const PaidCandidate = () => {
     const isMounted = useRef(false);
     const [loading, setLoading] = useState(false);
@@ -13,7 +21,7 @@ const PaidCandidate = () => {
         const getUser = async () => {
             setLoading(true);
             try {
-                await axios.get(`http://localhost:9090/api/application/payment-done-applicant`).then((response) => {
+                await axios.get(`/api/application/payment-done-applicant`).then((response) => {
                     if (!isMounted.current) {
                         const { body } = response.data;
                         setUsers(body);
@@ -53,31 +61,36 @@ const PaidCandidate = () => {
                             </Box>
 
                         ) : (
-                            <div className="usersList">
-                                <h1>Users List who have done the payment</h1>
-                                <ul>
-                                    {
-                                        users.length > 0 ? (
-                                            <div>
-                                                {
-                                                    users.map((item, id) => {
-                                                        return (
-                                                            <>
-                                                                <li key={id}>
-                                                                    {item.applicantName}
-                                                                </li>
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                        ) : (
-                                            <Typography variant='h6' pt={3}>No Users Found!</Typography>
+                           
+                            <TableWrapper>
+                            <h1>Users List who have done the payment</h1>
+                            <table>
+                                <tr>
+                                    
+                                    <th>Application Id</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                   
+                                </tr>
+                                {
+                                    users.map((item, id) => {
+                                        return (
+                                            <tr key={id}>
+                                                <td>{item.applicationId}</td>
+                                                <td>{item.applicantName}</td>
+                                                <td>{item.emailId}</td>
+                                                <td>{item.mobileNumber}</td>
+                                             
 
+                                            </tr>
                                         )
-                                    }
-                                </ul>
-                            </div>
+                                    })
+                                }
+
+                            </table>
+
+                        </TableWrapper>
 
                         )
                     }

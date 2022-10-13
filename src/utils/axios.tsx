@@ -4,7 +4,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 // ----------------------------------------------------------------------
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:9090',
+    baseURL: 'http://www.fpci.org.in:8080',
 });
 
 axiosInstance.interceptors.response.use(

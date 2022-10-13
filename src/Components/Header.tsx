@@ -26,6 +26,7 @@ const Header = () => {
                             <Nav.Link className='listItems' onClick={() => navigate('/paid-candidate')}>Paid Candidate</Nav.Link>
 
                             <Nav.Link className='listItems' onClick={() => navigate('/unpaid-candidate')}>UnPaid Candidate</Nav.Link>
+                            <Nav.Link className='listItems' onClick={() => navigate('/contact')}>Contact</Nav.Link>
 
 
 

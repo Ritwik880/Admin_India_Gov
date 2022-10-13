@@ -15,6 +15,7 @@ import Copyright from './Components/Copyright';
 import Privacy from './Components/Privacy';
 import Refund from './Components/Refund';
 import Terms from './Components/Terms';
+import Contact from './Components/Contact';
 const App = () => {
   const [loading, setLoading] = useState(false);
 
@@ -47,6 +48,7 @@ const App = () => {
               <Route path='/' element={<News />}></Route>
               <Route path='/paid-candidate' element={<PaidCandidate />}></Route>
               <Route path='/unpaid-candidate' element={<UnpaidCandidate />}></Route>
+              <Route path='/contact' element={<Contact/>}></Route>
               <Route path='/disclaimer' element={<Disclaimer />}></Route>
               <Route path='/copyright' element={<Copyright />}></Route>
               <Route path='/privacy-policy' element={<Privacy />}></Route>

@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 
 //library import
-import axios from "axios";
+import axios from '../utils/axios'
 
 const TableWrapper = styled(Box)(({ theme }) => ({
     height: "600px",
@@ -26,11 +26,6 @@ type AllNews =
     }
 
 
-function CustomUnsortedIcon() {
-    return <UnfoldMoreIcon sx={{ color: "#F46A03" }} />;
-}
-
-
 export default function NewsTable(): React.ReactElement {
     const [news, setNews] = useState<AllNews[]>([]);
     const [loading, setLoading] = useState(false);
@@ -43,7 +38,7 @@ export default function NewsTable(): React.ReactElement {
 
             try {
                 await axios
-                    .get(`http://localhost:9090/api/application/fetch-news`)
+                    .get(`/api/application/fetch-news`)
                     .then((response) => {
                         if (!isMounted.current) {
                             const { body } = response.data;
@@ -67,7 +62,7 @@ export default function NewsTable(): React.ReactElement {
 
     const handleClick = async (newsId: number, id: number, myNews: string) => {
         try {
-            await axios.post(`http://localhost:9090/api/application/delete-news`, {
+            await axios.post(`/api/application/delete-news`, {
                 id: 0,
                 news: myNews,
                 newsId: newsId

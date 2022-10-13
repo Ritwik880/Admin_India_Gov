@@ -1,10 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress, styled } from '@mui/material';
 import Cta from './Cta'
-import axios from 'axios';
+import axios from '../utils/axios'
 type UsersList = {
-    applicantName: string
+    applicantName: string;
+    emailId: string;
+    mobileNumber: string;
+    applicationId: string;
 }
+const TableWrapper = styled(Box)(({ theme }) => ({
+    height: "600px",
+    marginTop: '1rem'
+}));
 const UnPaidCandidate = () => {
     const isMounted = useRef(false);
     const [loading, setLoading] = useState(false);
@@ -13,7 +20,7 @@ const UnPaidCandidate = () => {
         const getUser = async () => {
             setLoading(true);
             try {
-                await axios.get(`http://localhost:9090/api/application/pending-payment-applicant`).then((response) => {
+                await axios.get(`/api/application/pending-payment-applicant`).then((response) => {
                     if (!isMounted.current) {
                         const { body } = response.data;
                         setUsers(body);
@@ -53,30 +60,36 @@ const UnPaidCandidate = () => {
                             </Box>
 
                         ) : (
-                            <div className="usersList">
+                            <TableWrapper>
                                 <h1>Users List who have not done the payment yet!</h1>
-                                <ul className='unPaid'>
+                                <table>
+                                    <tr>
+                                        
+                                        <th>Application Id</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                       
+                                    </tr>
                                     {
-                                        users.length > 0 ? (
-                                            <div>
-                                                {
-                                                    users.map((item, id) => {
-                                                        return (
-                                                            <>
-                                                                <li key={id} className='unPaidList'>
-                                                                    {item.applicantName}
-                                                                </li>
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                        ) : (
-                                            <Typography variant='h6' textAlign='center'>No Users Found!</Typography>
-                                        )
+                                        users.map((item, id) => {
+                                            return (
+                                                <tr key={id}>
+                                                    <td>{item.applicationId}</td>
+                                                    <td>{item.applicantName}</td>
+                                                    <td>{item.emailId}</td>
+                                                    <td>{item.mobileNumber}</td>
+                                                 
+
+                                                </tr>
+                                            )
+                                        })
                                     }
-                                </ul>
-                            </div>
+
+                                </table>
+
+                            </TableWrapper>
+
 
                         )
                     }

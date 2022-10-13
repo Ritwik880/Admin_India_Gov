@@ -4,8 +4,7 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 import { ToastContainer, toast } from "react-toastify";
 import * as Yup from 'yup';
 
-// import axios from '../utils/axios';
-import axios from 'axios';
+import axios from '../utils/axios'
 import FormProvider from './hook-form/FormProvider';
 import RHFTextField from './hook-form/RHFTextField';
 import { useForm } from 'react-hook-form';
@@ -45,7 +44,7 @@ const News = () => {
     const onSubmit = async (data: ProfileValuesProps) => {
         try {
 
-            const response = await axios.post('http://localhost:9090/api/application/add-news', {
+            const response = await axios.post('/api/application/add-news', {
                 news: data.news
             });
             const { message } = response.data;
